@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MetroCert — Carte de visite</title>
+<style>
+  :root {
+    --bg: #0f1020;
+    --card: #181a30;
+    --text: #f2f2f8;
+    --muted: #a9abc4;
+    --accent: #ffb347;
+    --accent2: #7c5cff;
+    --line: #2b2e4d;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    background: radial-gradient(circle at 20% 10%, #2a1f5c 0, transparent 45%), var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .card {
+    width: 100%;
+    max-width: 480px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: clamp(20px, 6vw, 36px);
+    box-shadow: 0 20px 50px rgba(0,0,0,.45);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+  }
+  .loc { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-size: clamp(2rem, 9vw, 2.6rem); margin: 8px 0 4px; letter-spacing: -.02em; }
+  h1 span { color: var(--accent); }
+  .pitch { color: var(--muted); line-height: 1.5; margin-bottom: 22px; }
+  .tags { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .tags li {
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--accent2);
+    font-size: .88rem;
+    background: rgba(124,92,255,.12);
+  }
+  .contact { border-top: 1px solid var(--line); padding-top: 18px; display: grid; gap: 6px; font-size: .95rem; }
+  .contact h2 { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .contact a { color: var(--accent); text-decoration: none; overflow-wrap: anywhere; }
+  .contact a:hover, .contact a:focus-visible { text-decoration: underline; }
+  .contact .note { color: var(--muted); font-size: .75rem; font-style: italic; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <p class="loc">Dakar · Sénégal</p>
+    <h1>📏 Metro<span>Cert</span></h1>
+    <p class="pitch">Vos instruments étalonnés, votre certificat en 24 h. Étalonnage d’instruments de mesure et certificats conformes à la norme ISO/IEC 17025:2017, sans ressaisie des relevés.</p>
+    <ul class="tags" aria-label="Points clés">
+      <li>ISO/IEC 17025:2017</li>
+      <li>Certificat en 24 h</li>
+      <li>0 ressaisie des relevés</li>
+      <li>Multi-instruments</li>
+      <li>Contrôle par agent IA</li>
+    </ul>
+    <section class="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <a href="mailto:contact@metrocert.sn">contact@metrocert.sn</a>
+      <a href="tel:+221330000000">+221 33 000 00 00</a>
+      <span>Zone industrielle de Mbao, Route de Rufisque, Dakar, Sénégal</span>
+      <a href="https://metrocert.netlify.app/">metrocert.netlify.app</a>
+      <span class="note">Coordonnées issues du site de démonstration (« données fictives »).</span>
+    </section>
+  </main>
+</body>
+</html>
