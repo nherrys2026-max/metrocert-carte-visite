@@ -55,11 +55,27 @@
     font-size: .88rem;
     background: rgba(124,92,255,.12);
   }
+  .stats { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 24px; }
+  .stats li { text-align: center; padding: 12px 4px; border: 1px solid var(--line); border-radius: 12px; }
+  .stats strong { display: block; font-size: clamp(1.3rem, 6vw, 1.7rem); color: var(--accent); letter-spacing: -.02em; }
+  .stats span { display: block; font-size: .72rem; color: var(--muted); margin-top: 2px; }
+  .cta {
+    display: block;
+    text-align: center;
+    padding: 13px 18px;
+    margin-bottom: 24px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    color: #0f1020;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .cta:hover, .cta:focus-visible { filter: brightness(1.1); outline: 2px solid var(--text); outline-offset: 2px; }
+  .footer { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line); text-align: center; color: var(--muted); font-size: .75rem; }
   .contact { border-top: 1px solid var(--line); padding-top: 18px; display: grid; gap: 6px; font-size: .95rem; }
   .contact h2 { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
   .contact a { color: var(--accent); text-decoration: none; overflow-wrap: anywhere; }
   .contact a:hover, .contact a:focus-visible { text-decoration: underline; }
-  .contact .note { color: var(--muted); font-size: .75rem; font-style: italic; margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -74,14 +90,20 @@
       <li>Multi-instruments</li>
       <li>Contrôle par agent IA</li>
     </ul>
+    <ul class="stats" aria-label="Chiffres clés">
+      <li><strong>150</strong><span>certificats / mois</span></li>
+      <li><strong>24 h</strong><span>de délai</span></li>
+      <li><strong>0</strong><span>ressaisie</span></li>
+    </ul>
+    <a class="cta" href="https://metrocert.netlify.app/contact">Demander un étalonnage</a>
     <section class="contact" aria-labelledby="contact-title">
       <h2 id="contact-title">Contact</h2>
       <a href="mailto:contact@metrocert.sn">contact@metrocert.sn</a>
       <a href="tel:+221330000000">+221 33 000 00 00</a>
       <span>Zone industrielle de Mbao, Route de Rufisque, Dakar, Sénégal</span>
       <a href="https://metrocert.netlify.app/">metrocert.netlify.app</a>
-      <span class="note">Coordonnées issues du site de démonstration (« données fictives »).</span>
     </section>
+    <p class="footer">Prototype pédagogique GET 409 — données fictives</p>
   </main>
 </body>
 </html>
