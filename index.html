@@ -72,10 +72,45 @@
   }
   .cta:hover, .cta:focus-visible { filter: brightness(1.1); outline: 2px solid var(--text); outline-offset: 2px; }
   .footer { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--line); text-align: center; color: var(--muted); font-size: .75rem; }
+  .verify { border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 24px; display: grid; gap: 10px; }
+  .verify h2 { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .verify-row { display: flex; gap: 8px; }
+  .verify input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
+    font-size: .95rem;
+  }
+  .verify input:focus-visible { outline: 2px solid var(--accent2); outline-offset: 1px; }
+  .verify button {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--accent2);
+    background: rgba(124,92,255,.12);
+    color: var(--text);
+    font: inherit;
+    font-size: .95rem;
+    cursor: pointer;
+  }
+  .verify button:hover, .verify button:focus-visible { background: rgba(124,92,255,.28); }
+  .verify-result { min-height: 1.2em; font-size: .95rem; }
+  .verify-result.ok { color: var(--accent); }
+  .verify-result.ok::before { content: "✓ "; }
+  .verify-result.ko { color: var(--muted); }
+  .verify-result.ko::before { content: "✗ "; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .contact { border-top: 1px solid var(--line); padding-top: 18px; display: grid; gap: 6px; font-size: .95rem; }
   .contact h2 { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
   .contact a { color: var(--accent); text-decoration: none; overflow-wrap: anywhere; }
   .contact a:hover, .contact a:focus-visible { text-decoration: underline; }
+  .card { min-width: 0; }
+  .verify { grid-template-columns: minmax(0, 1fr); }
+  .verify input { width: 100%; }
 </style>
 </head>
 <body>
@@ -96,6 +131,15 @@
       <li><strong>0</strong><span>ressaisie</span></li>
     </ul>
     <a class="cta" href="https://metrocert.netlify.app/contact">Demander un étalonnage</a>
+    <section class="verify" aria-labelledby="verify-title">
+      <h2 id="verify-title">Vérifier un certificat</h2>
+      <form id="verify-form" class="verify-row">
+        <label for="cert-id" class="sr-only">Numéro de certificat</label>
+        <input id="cert-id" name="cert" placeholder="MC-2026-0001" autocomplete="off" required>
+        <button type="submit">Vérifier</button>
+      </form>
+      <p id="verify-result" class="verify-result" aria-live="polite"></p>
+    </section>
     <section class="contact" aria-labelledby="contact-title">
       <h2 id="contact-title">Contact</h2>
       <a href="mailto:contact@metrocert.sn">contact@metrocert.sn</a>
@@ -105,5 +149,16 @@
     </section>
     <p class="footer">Prototype pédagogique GET 409 — données fictives</p>
   </main>
+  <script>
+    const VALID = ["MC-2026-0001"];
+    document.getElementById("verify-form").addEventListener("submit", e => {
+      e.preventDefault();
+      const id = document.getElementById("cert-id").value.trim().toUpperCase();
+      const out = document.getElementById("verify-result");
+      const ok = VALID.includes(id);
+      out.textContent = ok ? "Certificat valide" : "Introuvable";
+      out.className = "verify-result " + (ok ? "ok" : "ko");
+    });
+  </script>
 </body>
 </html>
